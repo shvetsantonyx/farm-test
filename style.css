@@ -24,6 +24,11 @@ h1 {
     margin-bottom: 10px;
 }
 
+h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
 p {
     width: 350px;
     margin: 0 auto;
@@ -33,7 +38,7 @@ p {
     border: 0;
     border-radius: 5px;
     margin-top: 50px;
-    height: 60px;
+    height: 100px;
     width: 200px;
     font-size: 20px;
     font-weight: 500;
@@ -41,6 +46,7 @@ p {
     transition: all 500ms ease;
     color: var(--tg-theme-button-color);
     background: var(--tg-theme-button-text-color);
+    text-decoration-color: blueviolet;
 }
 
 #click:hover {
