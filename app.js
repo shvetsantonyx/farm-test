@@ -7,7 +7,7 @@ tg.expand();
 
 let btn = document.getElementById("click");
 
-btn.addEventListener("click", function(){
+btn.addEventListener("push", function(){
     tg.MainButton.setText("Собрано");
     tg.MainButton.show();
     tg.sendData("sendTestMessage");
