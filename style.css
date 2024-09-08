@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;500&display=swap");
 
 * {
     margin: 0;
@@ -43,6 +43,6 @@ p {
     background: var(--tg-theme-button-text-color);
 }
 
-button:hover {
+#click:hover {
     background: var(--tg-theme-secondary-bg-color);
 }
