@@ -11,7 +11,13 @@ document.getElementById("username").innerHTML = username;
 let btn = document.getElementById("click");
 
 btn.addEventListener("push", function(){
-    tg.MainButton.setText("Собрано");
-    tg.MainButton.show();
-    tg.sendData("sendTestMessage");
+    // tg.MainButton.setText("Собрано");
+    // tg.MainButton.show();
+    // tg.sendData("sendTestMessage");
+    if (tg.MainButton.isVisible){ //если кнопка показана 
+		tg.MainButton.hide() //скрываем кнопку 
+	}
+  else{ //иначе
+  	tg.MainButton.show() //показываем 
+  }
 });
