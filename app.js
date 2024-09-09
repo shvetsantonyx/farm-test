@@ -11,9 +11,15 @@ document.getElementById("username").innerHTML = message;
 
 let btn = document.getElementById("btn");
 
-console.log('Hii');
+let user = {
+    "userid": 2,
+    "langcode": "ru",
+    "chatid": 3
+}
 
-btn.addEventListener("click", function(){
+let url = '185.104.114.18:8081/login'
+
+btn.addEventListener("click", async function(){
     // tg.MainButton.setText("Собрано");
     // tg.MainButton.show();
     // tg.sendData("sendTestMessage");
@@ -24,9 +30,17 @@ btn.addEventListener("click", function(){
 //   	tg.MainButton.show() //показываем 
 //   }
     console.log('Hi');
-    fetch('https://jsonplaceholder.typicode.com/todos/1')
-        .then(response => response.json())
-        .then(json => console.log(json));
+    let responce = await fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify(user)
+    });
+
+    let result = await responce.json();
+    console.log(result)
+        
 
     let coins = 0
     document.getElementById("coins").innerHTML = coins;
