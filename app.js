@@ -22,7 +22,7 @@ btn.addEventListener("click", function(){
 //   else{ //иначе
 //   	tg.MainButton.show() //показываем 
 //   }
-    console.log('Hi')
+    console.log('Hi');
     // fetch('https://jsonplaceholder.typicode.com/todos/1')
     //     .then(response => response.json())
     //     .then(json => console.log(json));
