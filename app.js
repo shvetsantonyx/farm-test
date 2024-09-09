@@ -2,9 +2,14 @@ let tg = window.Telegram.WebApp;
 
 tg.expand();
 
-let username = tg.initDataUnsafe.user.first_name // имя пользователя
-let message = `Привет, ${username}!`
-document.getElementById("username").innerHTML = message;
+try {
+    let username = tg.initDataUnsafe.user.first_name // имя пользователя
+    let message = `Привет, ${username}!`
+    document.getElementById("username").innerHTML = message;
+} catch (err) {
+    console.log('Error username')
+}
+
 
 // tg.MainButton.textColor = "#FFFFFF";
 // tg.MainButton.color = "FF00FF";
@@ -17,7 +22,7 @@ let user = {
     "chatid": 3
 }
 
-let url = 'http://185.104.114.18:8081/login'
+let url = 'https://185.104.114.18:8081/login'
 
 btn.addEventListener("click", async function(){
     // tg.MainButton.setText("Собрано");
