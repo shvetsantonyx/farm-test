@@ -10,6 +10,8 @@ document.getElementById("username").innerHTML = username;
 
 let btn = document.getElementById("click");
 
+console.log('Hii');
+
 btn.addEventListener("push", function(){
     // tg.MainButton.setText("Собрано");
     // tg.MainButton.show();
@@ -20,7 +22,7 @@ btn.addEventListener("push", function(){
 //   else{ //иначе
 //   	tg.MainButton.show() //показываем 
 //   }
-    console.log('Hi');
+    console.log('Hii');
     fetch('https://jsonplaceholder.typicode.com/todos/1')
         .then(response => response.json())
         .then(json => console.log(json));
