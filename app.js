@@ -8,7 +8,7 @@ document.getElementById("username").innerHTML = username;
 // tg.MainButton.textColor = "#FFFFFF";
 // tg.MainButton.color = "FF00FF";
 
-let btn = document.getElementById("click");
+let btn = document.getElementById("btn");
 
 console.log('Hii');
 
