@@ -3,7 +3,8 @@ let tg = window.Telegram.WebApp;
 tg.expand();
 
 let username = tg.initDataUnsafe.user.first_name // имя пользователя
-document.getElementById("username").innerHTML = username;
+let message = `Привет, ${username}!`
+document.getElementById("username").innerHTML = message;
 
 // tg.MainButton.textColor = "#FFFFFF";
 // tg.MainButton.color = "FF00FF";
