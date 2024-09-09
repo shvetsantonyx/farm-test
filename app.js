@@ -28,7 +28,7 @@ btn.addEventListener("click", function(){
         .then(json => console.log(json));
 
     let coins = 0
-    document.getElementById("coins") = coins;
+    document.getElementById("coins").innerHTML = coins;
 
 
 });
