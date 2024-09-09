@@ -12,7 +12,7 @@ let btn = document.getElementById("click");
 
 console.log('Hii');
 
-btn.addEventListener("push", function(){
+btn.addEventListener("click", function(){
     // tg.MainButton.setText("Собрано");
     // tg.MainButton.show();
     // tg.sendData("sendTestMessage");
