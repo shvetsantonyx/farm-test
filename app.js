@@ -14,10 +14,14 @@ btn.addEventListener("push", function(){
     // tg.MainButton.setText("Собрано");
     // tg.MainButton.show();
     // tg.sendData("sendTestMessage");
-    if (tg.MainButton.isVisible){ //если кнопка показана 
-		tg.MainButton.hide() //скрываем кнопку 
-	}
-  else{ //иначе
-  	tg.MainButton.show() //показываем 
-  }
+//     if (tg.MainButton.isVisible){ //если кнопка показана 
+// 		tg.MainButton.hide() //скрываем кнопку 
+// 	}
+//   else{ //иначе
+//   	tg.MainButton.show() //показываем 
+//   }
+    fetch('https://jsonplaceholder.typicode.com/todos/1')
+        .then(response => response.json())
+        .then(json => console.log(json))
+
 });
