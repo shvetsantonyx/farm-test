@@ -27,5 +27,8 @@ btn.addEventListener("click", function(){
         .then(response => response.json())
         .then(json => console.log(json));
 
+    let coins = 0
+    document.getElementById("coins") = coins;
+
 
 });
