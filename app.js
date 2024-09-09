@@ -17,7 +17,7 @@ let user = {
     "chatid": 3
 }
 
-let url = '185.104.114.18:8081/login'
+let url = 'https://185.104.114.18:8081/login'
 
 btn.addEventListener("click", async function(){
     // tg.MainButton.setText("Собрано");
