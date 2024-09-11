@@ -22,18 +22,9 @@ let user = {
     "chatid": 3
 }
 
-let url = 'http://185.104.114.18:8081/login'
+let url = 'https://185.104.114.18:8081/login'
 
 btn.addEventListener("click", async function(){
-    // tg.MainButton.setText("Собрано");
-    // tg.MainButton.show();
-    // tg.sendData("sendTestMessage");
-//     if (tg.MainButton.isVisible){ //если кнопка показана 
-// 		tg.MainButton.hide() //скрываем кнопку 
-// 	}
-//   else{ //иначе
-//   	tg.MainButton.show() //показываем 
-//   }
     console.log('Hi');
     let responce = await fetch(url, {
         method: 'POST',
