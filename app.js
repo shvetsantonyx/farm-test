@@ -26,17 +26,25 @@ let url = 'https://185.104.114.18:8443/login'
 
 btn.addEventListener("click", async function(){
     console.log('Hi');
-    let responce = await fetch(url, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json;charset=utf-8'
-        },
-        body: JSON.stringify(user)
-    });
+    try {
+        let responce = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: JSON.stringify(user)
+        });
 
-    let result = await responce.json();
-    console.log(result);
-    document.getElementById("out").innerHTML = result;
+        let result = await responce.json();
+        console.log(result);
+        document.getElementById("out").innerHTML = result;
+    } catch (err) {
+        console.log('Error username')
+        document.getElementById("out").innerHTML = "Error";
+    }
+    
+
+    
 
     let coins = 0
     document.getElementById("coins").innerHTML = coins;
