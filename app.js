@@ -35,8 +35,8 @@ btn.addEventListener("click", async function(){
     });
 
     let result = await responce.json();
-    console.log(result)
-        
+    console.log(result);
+    document.getElementById("out").innerHTML = result;
 
     let coins = 0
     document.getElementById("coins").innerHTML = coins;
