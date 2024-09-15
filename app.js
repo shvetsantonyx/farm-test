@@ -24,38 +24,10 @@ let user = {
 
 let url = 'https://185.104.114.18:8443/login'
 
-// btn.addEventListener("click", async function(){
-//     console.log('Hi');
-//     try {
-//         let responce = await fetch(url, {
-//             method: 'POST',
-//             headers: {
-//                 'Content-Type': 'application/json'
-//             },
-//             body: JSON.stringify(user)
-//         });
-
-//         let result = await responce.json();
-//         console.log(result);
-//         document.getElementById("out").innerHTML = result;
-//     } catch (err) {
-//         console.log('Error username')
-//         document.getElementById("out").innerHTML = "Error";
-//     }
-    
-
-    
-
-//     let coins = 0
-//     document.getElementById("coins").innerHTML = coins;
-
-
-// });
-
-btn.addEventListener("click", function(){
+btn.addEventListener("click", async function(){
     console.log('Hi');
     try {
-        let responce = fetch(url, {
+        let responce = await fetch(url, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -63,7 +35,7 @@ btn.addEventListener("click", function(){
             body: JSON.stringify(user)
         });
 
-        let result = responce.json();
+        let result = await responce.json();
         console.log(result);
         document.getElementById("out").innerHTML = result;
     } catch (err) {
@@ -79,3 +51,31 @@ btn.addEventListener("click", function(){
 
 
 });
+
+// btn.addEventListener("click", function(){
+//     console.log('Hi');
+//     try {
+//         let responce = fetch(url, {
+//             method: 'POST',
+//             headers: {
+//                 'Content-Type': 'application/json'
+//             },
+//             body: JSON.stringify(user)
+//         });
+
+//         let result = responce.json();
+//         console.log(result);
+//         document.getElementById("out").innerHTML = result;
+//     } catch (err) {
+//         console.log('Error username')
+//         document.getElementById("out").innerHTML = "Error";
+//     }
+    
+
+    
+
+//     let coins = 0
+//     document.getElementById("coins").innerHTML = coins;
+
+
+// });

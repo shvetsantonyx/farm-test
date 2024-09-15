@@ -51,6 +51,10 @@ p {
     background: var(--tg-theme-button-text-color);
 }
 
+#coins {
+    height: 34px;
+}
+
 #click:hover {
     background: var(--tg-theme-secondary-bg-color);
 }
