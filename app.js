@@ -12,6 +12,8 @@ try {
 
 
 let btn = document.getElementById("btn");
+let coins_obj = document.getElementById("coins");
+let coins_counter_obj = document.getElementById("coins_counter");
 
 // TODO переделать запрос 
 let user = {
@@ -35,33 +37,87 @@ let resp_user_logged = '{ \
 const parsed = JSON.parse(resp_user_logged);
 console.log(parsed.message)
 
+// JS фармилка
+var coins = 0;
+var coins_counter = 0;
+
+function farming(coins_limit) {
+    if (coins_counter < coins_limit) {
+        coins_counter += 1;
+        coins_counter_obj.innerHTML = `Текущий счет: ${coins_counter}`;
+    }
+}
+
+var farm_interval_id = 0;
+function start(){
+    btn.innerHTML = "Фармить";
+    coins_obj.innerHTML = `Ваш баланс: ${coins}`;
+    
+};
+function farm(){
+    btn.innerHTML = "Собрать"
+    farm_interval_id = setInterval(farming, 1000, 10);
+    console.log(coins_counter)
+};
+function claim_reward() {
+    console.log("Coins counter", coins_counter)
+    coins += coins_counter;
+    coins_obj.innerHTML = `Ваш баланс: ${coins}`;
+    coins_counter = 0;
+    clearInterval(farm_interval_id);
+    farm_interval_id = setInterval(farming, 1000, 10);
+}
+
+var action = 1;
+click_counter = 0;
+document.querySelector('#btn').onclick = function() {
+    if (btn.textContent == 'Старт') {
+        start();
+        console.log("first click")
+        click_counter += 1;
+    }
+    else if (btn.textContent == 'Фармить') {
+        farm();
+        click_counter += 1;
+        console.log("second click", action, click_counter, farm_interval_id)
+        action = 1;
+    }
+    else if (btn.textContent == 'Собрать' && farm_interval_id > 0) {
+        claim_reward();
+        click_counter += 1;
+        console.log("next click", click_counter);
+    }
+};
+
+// конец фармилки
+
+
+
 let url = 'https://185.104.114.18:8443/login'
 
+// btn.addEventListener("click", async function(){
+//     console.log('Hi');
+//     try {
+//         let responce = await fetch(url, {
+//             method: 'POST',
+//             headers: {
+//                 'Content-Type': 'application/json'
+//             },
+//             body: JSON.stringify(user)
+//         });
 
-btn.addEventListener("click", async function(){
-    console.log('Hi');
-    try {
-        let responce = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(user)
-        });
-
-        let result = await responce.json();
-        console.log(result);
-        document.getElementById("out").innerHTML = result;
-    } catch (err) {
-        console.log('Error username')
-        document.getElementById("out").innerHTML = "Error";
-    }
+//         let result = await responce.json();
+//         console.log(result);
+//         document.getElementById("out").innerHTML = result;
+//     } catch (err) {
+//         console.log('Error username')
+//         document.getElementById("out").innerHTML = "Error";
+//     }
     
 
     
 
-    let coins = 0
-    document.getElementById("coins").innerHTML = coins;
+//     let coins = 0
+//     document.getElementById("coins").innerHTML = coins;
 
-
-});
+// });
