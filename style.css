@@ -55,6 +55,10 @@ p {
     height: 34px;
 }
 
+#coins_counter {
+    height: 34px;
+}
+
 #click:hover {
     background: var(--tg-theme-secondary-bg-color);
 }
