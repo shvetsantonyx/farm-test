@@ -2,10 +2,14 @@ let tg = window.Telegram.WebApp;
 
 tg.expand();
 
+let mainurl = 'https://farmingmachine.webtm.ru';
+let endpointLogin = '/api/login'
+
 try {
     let username = tg.initDataUnsafe.user.first_name // имя пользователя
     let message = `Привет, ${username}!`
-    document.getElementById("username").innerHTML = message;
+    // document.getElementById("username").innerHTML = message;
+    document.getElementById("username").insertAdjacentHTML('afterbegin', message);
 } catch (err) {
     console.log('Error username')
 }
@@ -16,7 +20,7 @@ let coins_obj = document.getElementById("coins");
 let coins_counter_obj = document.getElementById("coins_counter");
 
 // btn.setAttribute('disabled', '') // кнопка неактивна
-// btn.style.display = 'none' // кнопка скрыта
+btn.style.display = 'none' // кнопка скрыта
 
 // TODO переделать запрос 
 let login = {
@@ -30,6 +34,28 @@ let login = {
     'hash': 'test'
 };
 console.log(login);
+
+try {
+    let responce = await fetch(mainurl + endpointLogin, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(login)
+    });
+    
+    let result = await responce.json();
+    console.log(result);
+    if (length(result.token) > 0) {
+        btn.style.display = 'inline'
+    }
+} 
+catch (err) {
+    console.log('Error username')};
+
+
+
+
 
 let resp_user_created = {
     "message": "Account has been created",
@@ -45,62 +71,6 @@ let resp_user_logged = '{ \
 
 const parsed = JSON.parse(resp_user_logged);
 console.log(parsed.message)
-
-// JS фармилка
-var coins = 0;
-var coins_counter = 0;
-
-function farming(coins_limit) {
-    if (coins_counter < coins_limit) {
-        coins_counter += 1;
-        coins_counter_obj.innerHTML = `Текущий счет: ${coins_counter}`;
-    }
-}
-
-var farm_interval_id = 0;
-function start(){
-    btn.innerHTML = "Фармить";
-    coins_obj.innerHTML = `Ваш баланс: ${coins}`;
-    
-};
-function farm(){
-    btn.innerHTML = "Собрать"
-    farm_interval_id = setInterval(farming, 1000, 10);
-    console.log(coins_counter)
-};
-function claim_reward() {
-    console.log("Coins counter", coins_counter)
-    coins += coins_counter;
-    coins_obj.innerHTML = `Ваш баланс: ${coins}`;
-    coins_counter = 0;
-    clearInterval(farm_interval_id);
-    farm_interval_id = setInterval(farming, 1000, 10);
-}
-
-var action = 1;
-click_counter = 0;
-document.querySelector('#btn').onclick = function() {
-    if (btn.textContent == 'Старт') {
-        start();
-        console.log("first click")
-        click_counter += 1;
-    }
-    else if (btn.textContent == 'Фармить') {
-        farm();
-        click_counter += 1;
-        console.log("second click", action, click_counter, farm_interval_id)
-        action = 1;
-    }
-    else if (btn.textContent == 'Собрать' && farm_interval_id > 0) {
-        claim_reward();
-        click_counter += 1;
-        console.log("next click", click_counter);
-    }
-};
-
-// конец фармилки
-
-
 
 // JS фармилка
 var coins = 0;
