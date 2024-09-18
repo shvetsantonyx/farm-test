@@ -8,8 +8,8 @@ let endpointLogin = '/api/login'
 try {
     let username = tg.initDataUnsafe.user.first_name // имя пользователя
     let message = `Привет, ${username}!`
-    // document.getElementById("username").innerHTML = message;
-    document.getElementById("username").textContent = message;
+    document.getElementById("username").innerHTML = message;
+    // document.getElementById("username").textContent = message;
 } catch (err) {
     console.log('Error username')
 }
@@ -36,7 +36,7 @@ let login = {
 console.log(login);
 
 try {
-    let responce = await fetch(mainurl + endpointLogin, {
+    let responce = fetch(mainurl + endpointLogin, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -44,7 +44,7 @@ try {
         body: JSON.stringify(login)
     });
     
-    let result = await responce.json();
+    let result = responce.json();
     console.log(result);
     if (length(result.token) > 0) {
         btn.style.display = 'inline'
