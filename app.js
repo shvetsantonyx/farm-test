@@ -15,12 +15,21 @@ let btn = document.getElementById("btn");
 let coins_obj = document.getElementById("coins");
 let coins_counter_obj = document.getElementById("coins_counter");
 
+// btn.setAttribute('disabled', '') // кнопка неактивна
+// btn.style.display = 'none' // кнопка скрыта
+
 // TODO переделать запрос 
-let user = {
-    "userid": 2,
-    "langcode": "ru",
-    "chatid": 3
+let login = {
+    'queryId': 'test',
+    'userId': tg.initDataUnsafe.user.id,
+    'userName': tg.initDataUnsafe.user.username,
+    'firstName': tg.initDataUnsafe.user.first_name,
+    'lastName': tg.initDataUnsafe.user.last_name,
+    'langCode': tg.initDataUnsafe.user.language_code,
+    'authDate': Date.now(),
+    'hash': 'test'
 };
+console.log(login);
 
 let resp_user_created = {
     "message": "Account has been created",
