@@ -9,7 +9,7 @@ try {
     let username = tg.initDataUnsafe.user.first_name // имя пользователя
     let message = `Привет, ${username}!`
     // document.getElementById("username").innerHTML = message;
-    document.getElementById("username").insertAdjacentText('afterbegin', message);
+    document.getElementById("username").textContent = message;
 } catch (err) {
     console.log('Error username')
 }
