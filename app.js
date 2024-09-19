@@ -2,10 +2,17 @@ let tg = window.Telegram.WebApp;
 
 tg.expand();
 
+let mainurl = 'https://farmingmachine.webtm.ru';
+let endpointLogin = '/api/login';
+let endpointInfo = '/api/info';
+let endpointFarming = '/api/farming';
+let endpointClaim = '/api/claim';
+
 try {
     let username = tg.initDataUnsafe.user.first_name // имя пользователя
     let message = `Привет, ${username}!`
     document.getElementById("username").innerHTML = message;
+    // document.getElementById("username").textContent = message;
 } catch (err) {
     console.log('Error username')
 }
@@ -16,7 +23,11 @@ let coins_obj = document.getElementById("coins");
 let coins_counter_obj = document.getElementById("coins_counter");
 
 // btn.setAttribute('disabled', '') // кнопка неактивна
+
 // btn.style.display = 'none' // кнопка скрыта
+
+// btn.style.display = 'none' // кнопка скрыта
+
 
 // TODO переделать запрос 
 let login = {
@@ -30,6 +41,41 @@ let login = {
     'hash': 'test'
 };
 console.log(login);
+
+
+// отправляется запрос login на сервер
+try {
+    let responce = fetch(mainurl + endpointLogin, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(login)
+    });
+    
+    let result = responce.json();
+    console.log(result);
+    if (length(result.token) > 0) {
+        btn.style.display = 'inline' // возвращаем кнопку
+    }
+} 
+catch (err) {
+    console.log('Error username')};
+
+// отправляется запрос info на сервер
+try {
+    let responce = fetch(mainurl + endpointInfo, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${result.token}`
+        } // ЗАКОНЧИЛ ЗДЕСЬ
+    })
+}
+catch (err) {}
+
+
+
 
 let resp_user_created = {
     "message": "Account has been created",
@@ -45,6 +91,9 @@ let resp_user_logged = '{ \
 
 const parsed = JSON.parse(resp_user_logged);
 console.log(parsed.message)
+
+
+
 
 // JS фармилка
 var coins = 0;
@@ -65,7 +114,11 @@ function start(){
 };
 function farm(){
     btn.innerHTML = "Собрать"
-    farm_interval_id = setInterval(farming, 1000, 10);
+    try {
+        let responce = fetch(mainurl + endpointFarming)
+    }
+    catch (err) {}
+    // farm_interval_id = setInterval(farming, 1000, 10);
     console.log(coins_counter)
 };
 function claim_reward() {
@@ -114,7 +167,24 @@ let url = 'https://185.104.114.18:8443/login'
 //             },
 //             body: JSON.stringify(user)
 //         });
+// btn.addEventListener("click", async function(){
+//     console.log('Hi');
+//     try {
+//         let responce = await fetch(url, {
+//             method: 'POST',
+//             headers: {
+//                 'Content-Type': 'application/json'
+//             },
+//             body: JSON.stringify(user)
+//         });
 
+//         let result = await responce.json();
+//         console.log(result);
+//         document.getElementById("out").innerHTML = result;
+//     } catch (err) {
+//         console.log('Error username')
+//         document.getElementById("out").innerHTML = "Error";
+//     }
 //         let result = await responce.json();
 //         console.log(result);
 //         document.getElementById("out").innerHTML = result;
@@ -128,5 +198,8 @@ let url = 'https://185.104.114.18:8443/login'
 
 //     let coins = 0
 //     document.getElementById("coins").innerHTML = coins;
+//     let coins = 0
+//     document.getElementById("coins").innerHTML = coins;
 
+// });
 // });
