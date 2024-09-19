@@ -69,11 +69,19 @@ try {
         headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${result.token}`
-        } // ЗАКОНЧИЛ ЗДЕСЬ
-    })
+        }
+    });
+
+    let result = responce.json();
+    let parsed_result = JSON.parse(result)
+    coins_obj.textContent = parsed_result.balanceInfo.coins; // вытягиваем баланс для отображения
 }
 catch (err) {}
 
+//переменные для фарма
+let duration = parsed_result.farmingInfo.durationSec;
+let maxcap = parsed_result.farmingInfo.maxCap;
+let multiplier = parsed_result.farmingInfo.multiplier;
 
 
 
