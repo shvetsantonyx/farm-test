@@ -8,9 +8,12 @@ let endpointInfo = '/api/info';
 let endpointFarming = '/api/farming';
 let endpointClaim = '/api/claim';
 
+let avatar_obj = document.getElementsByClassName('avatar');
+
 try {
     let username = tg.initDataUnsafe.user.first_name; // имя пользователя
     const avatar = tg.initDataUnsafe.avatar;
+    avatar_obj.src = avatar;
     let message = `Привет, ${username}!`;
     document.getElementById('username').innerHTML = message;
 } catch (err) {
@@ -20,9 +23,6 @@ try {
 let btn = document.getElementById('btn');
 let coins_obj = document.getElementById('coins');
 let coins_counter_obj = document.getElementById('coins_counter');
-let avatar_obj = document.getElementsByClassName('avatar');
-
-avatar_obj.src = avatar;
 
 // btn.setAttribute('disabled', '') // кнопка неактивна
 
