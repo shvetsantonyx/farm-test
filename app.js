@@ -12,7 +12,7 @@ let avatar_obj = document.getElementsByClassName('avatar');
 
 try {
     let username = tg.initDataUnsafe.user.first_name; // имя пользователя
-    let initdata = tg.initDataUnsafe.user;
+    let initdata = tg.initData.user;
     console.log('data', initdata);
     const avatar = tg.initDataUnsafe.user.photo_url;
     console.log('avatar!', avatar);
