@@ -9,18 +9,20 @@ let endpointFarming = '/api/farming';
 let endpointClaim = '/api/claim';
 
 try {
-    let username = tg.initDataUnsafe.user.first_name // имя пользователя
-    let message = `Привет, ${username}!`
-    document.getElementById("username").innerHTML = message;
-    // document.getElementById("username").textContent = message;
+    let username = tg.initDataUnsafe.user.first_name; // имя пользователя
+    const avatar = tg.initDataUnsafe.avatar;
+    let message = `Привет, ${username}!`;
+    document.getElementById('username').innerHTML = message;
 } catch (err) {
-    console.log('Error username')
+    console.log('Error username');
 }
 
+let btn = document.getElementById('btn');
+let coins_obj = document.getElementById('coins');
+let coins_counter_obj = document.getElementById('coins_counter');
+let avatar_obj = document.getElementsByClassName('avatar');
 
-let btn = document.getElementById("btn");
-let coins_obj = document.getElementById("coins");
-let coins_counter_obj = document.getElementById("coins_counter");
+avatar_obj.src = avatar;
 
 // btn.setAttribute('disabled', '') // кнопка неактивна
 
@@ -28,39 +30,38 @@ let coins_counter_obj = document.getElementById("coins_counter");
 
 // btn.style.display = 'none' // кнопка скрыта
 
-
-// TODO переделать запрос 
+// TODO переделать запрос
 let login = {
-    'queryId': 'test',
-    'userId': tg.initDataUnsafe.user.id,
-    'userName': tg.initDataUnsafe.user.username,
-    'firstName': tg.initDataUnsafe.user.first_name,
-    'lastName': tg.initDataUnsafe.user.last_name,
-    'langCode': tg.initDataUnsafe.user.language_code,
-    'authDate': Date.now(),
-    'hash': 'test'
+    queryId: 'test',
+    userId: tg.initDataUnsafe.user.id,
+    userName: tg.initDataUnsafe.user.username,
+    firstName: tg.initDataUnsafe.user.first_name,
+    lastName: tg.initDataUnsafe.user.last_name,
+    langCode: tg.initDataUnsafe.user.language_code,
+    authDate: Date.now(),
+    hash: 'test',
 };
 console.log(login);
-
 
 // отправляется запрос login на сервер
 try {
     let responce = fetch(mainurl + endpointLogin, {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
         },
-        body: JSON.stringify(login)
+        body: JSON.stringify(login),
     });
-    
+
     let result = responce.json();
-    console.log(result);
-    if (length(result.token) > 0) {
-        btn.style.display = 'inline' // возвращаем кнопку
+    let parsed_result = JSON.parse(result);
+    console.log(parsed_result);
+    if (length(parsed_result.token) > 0) {
+        btn.style.display = 'inline'; // возвращаем кнопку
     }
-} 
-catch (err) {
-    console.log('Error username')};
+} catch (err) {
+    console.log('Error username');
+}
 
 // отправляется запрос info на сервер
 try {
@@ -68,40 +69,35 @@ try {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${result.token}`
-        }
+            Authorization: `Bearer ${result.token}`,
+        },
     });
 
     let result = responce.json();
-    let parsed_result = JSON.parse(result)
+    let parsed_result = JSON.parse(result);
     coins_obj.textContent = parsed_result.balanceInfo.coins; // вытягиваем баланс для отображения
-}
-catch (err) {}
+} catch (err) {}
 
 //переменные для фарма
-let duration = parsed_result.farmingInfo.durationSec;
-let maxcap = parsed_result.farmingInfo.maxCap;
-let multiplier = parsed_result.farmingInfo.multiplier;
-
-
+// let duration = parsed_result.farmingInfo.durationSec;
+// let maxcap = parsed_result.farmingInfo.maxCap;
+// let multiplier = parsed_result.farmingInfo.multiplier;
 
 let resp_user_created = {
-    "message": "Account has been created",
-    "status": true,
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBY2NvdW50Ijp7InVzZXJJZCI6MiwibGFuZ0NvZGUiOiJydSJ9fQ.VZwwvOmjat2RZV7NLCcwlyyTy3UQs_fN8VJpRaJGchI"
+    message: 'Account has been created',
+    status: true,
+    token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBY2NvdW50Ijp7InVzZXJJZCI6MiwibGFuZ0NvZGUiOiJydSJ9fQ.VZwwvOmjat2RZV7NLCcwlyyTy3UQs_fN8VJpRaJGchI',
 };
 
-let resp_user_logged = '{ \
+let resp_user_logged =
+    '{ \
     "message": "Logged In", \
     "status": true, \
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBY2NvdW50Ijp7InVzZXJJZCI6MiwibGFuZ0NvZGUiOiJydSJ9fQ.VZwwvOmjat2RZV7NLCcwlyyTy3UQs_fN8VJpRaJGchI" \
 }';
 
 const parsed = JSON.parse(resp_user_logged);
-console.log(parsed.message)
-
-
-
+console.log(parsed.message);
 
 // JS фармилка
 var coins = 0;
@@ -115,22 +111,20 @@ function farming(coins_limit) {
 }
 
 var farm_interval_id = 0;
-function start(){
-    btn.innerHTML = "Фармить";
+function start() {
+    btn.innerHTML = 'Фармить';
     coins_obj.innerHTML = `Ваш баланс: ${coins}`;
-    
-};
-function farm(){
-    btn.innerHTML = "Собрать"
+}
+function farm() {
+    btn.innerHTML = 'Собрать';
     try {
-        let responce = fetch(mainurl + endpointFarming)
-    }
-    catch (err) {}
+        let responce = fetch(mainurl + endpointFarming);
+    } catch (err) {}
     // farm_interval_id = setInterval(farming, 1000, 10);
-    console.log(coins_counter)
-};
+    console.log(coins_counter);
+}
 function claim_reward() {
-    console.log("Coins counter", coins_counter)
+    console.log('Coins counter', coins_counter);
     coins += coins_counter;
     coins_obj.innerHTML = `Ваш баланс: ${coins}`;
     coins_counter = 0;
@@ -140,30 +134,26 @@ function claim_reward() {
 
 var action = 1;
 click_counter = 0;
-document.querySelector('#btn').onclick = function() {
+document.querySelector('#btn').onclick = function () {
     if (btn.textContent == 'Старт') {
         start();
-        console.log("first click")
+        console.log('first click');
         click_counter += 1;
-    }
-    else if (btn.textContent == 'Фармить') {
+    } else if (btn.textContent == 'Фармить') {
         farm();
         click_counter += 1;
-        console.log("second click", action, click_counter, farm_interval_id)
+        console.log('second click', action, click_counter, farm_interval_id);
         action = 1;
-    }
-    else if (btn.textContent == 'Собрать' && farm_interval_id > 0) {
+    } else if (btn.textContent == 'Собрать' && farm_interval_id > 0) {
         claim_reward();
         click_counter += 1;
-        console.log("next click", click_counter);
+        console.log('next click', click_counter);
     }
 };
 
 // конец фармилки
 
-
-
-let url = 'https://185.104.114.18:8443/login'
+let url = 'https://185.104.114.18:8443/login';
 
 // btn.addEventListener("click", async function(){
 //     console.log('Hi');
@@ -200,9 +190,6 @@ let url = 'https://185.104.114.18:8443/login'
 //         console.log('Error username')
 //         document.getElementById("out").innerHTML = "Error";
 //     }
-    
-
-    
 
 //     let coins = 0
 //     document.getElementById("coins").innerHTML = coins;
