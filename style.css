@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;500&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;500&display=swap');
 
 * {
     margin: 0;
@@ -7,7 +7,7 @@
 }
 
 body {
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 200;
     color: var(--tg-theme-text-color);
     background: var(--tg-theme-bg-color);
@@ -68,6 +68,7 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+<<<<<<< HEAD
 button:disabled {
     background: linear-gradient(145deg, #7c7c7c, #585858);
     color: rgb(197, 197, 197);
@@ -75,6 +76,10 @@ button:disabled {
 
 #btn:hover:enabled {
     background: linear-gradient(145deg, #28a745, #32CD32);
+=======
+#btn:hover {
+    background: linear-gradient(145deg, #28a745, #32cd32);
+>>>>>>> 7d3ee230d2ce75843035afe1bf6e269badde53fa
 }
 
 h1 {
@@ -127,6 +132,7 @@ h3 {
 #click:hover {
     background: var(--tg-theme-secondary-bg-color);
 }
+<<<<<<< HEAD
 
 .modal {
     display: none;
@@ -213,3 +219,5 @@ h3 {
     transform: translate(-50%, -50%);
     font-size: 24px;
 }
+=======
+>>>>>>> 7d3ee230d2ce75843035afe1bf6e269badde53fa
