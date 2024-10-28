@@ -68,7 +68,12 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-#btn:hover {
+button:disabled {
+    background: linear-gradient(145deg, #7c7c7c, #585858);
+    color: rgb(197, 197, 197);
+}
+
+#btn:hover:enabled {
     background: linear-gradient(145deg, #28a745, #32CD32);
 }
 
@@ -121,4 +126,90 @@ h3 {
 
 #click:hover {
     background: var(--tg-theme-secondary-bg-color);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #2e2e2e;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 300px;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #fff;
+}
+
+.reward-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.reward-button {
+    padding: 10px;
+    background-color: #444;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    flex: 1 0 30%; /* 30% ширины для каждого элемента в ряду из 3-х */
+    max-width: 90px; /* Максимальная ширина кнопки */
+}
+
+.reward-button:disabled {
+    background-color: #555;
+    cursor: not-allowed;
+}
+
+.reward-buttons .reward-button:last-child {
+    flex: 1 0 100%; /* Последняя кнопка растягивается на всю ширину */
+    max-width: 100%; /* Максимальная ширина для последней кнопки */
+}
+
+.locked {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.locked::before {
+    content: '🔒';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+}
+
+.completed {
+    background-color: #d4edda;
+    cursor: not-allowed;
+}
+
+.completed::before {
+    content: '✅';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
 }

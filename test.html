@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            const mainurl = 'https://farmingmachine.webtm.ru';
+            const endpointLogin = '/api/login';
+            const endpointInfo = '/api/info';
+
+            const login = {
+                queryId: 'test',
+                userId: 1,
+                userName: 'test',
+                firstName: 'test',
+                lastName: 'test',
+                langCode: 'ru',
+                authDate: Math.round(Date.now() / 1000),
+                hash: 'test',
+            };
+            let token = '';
+            (async function () {
+                let responce = await fetch(mainurl + endpointLogin, {
+                    method: 'POST',
+                    // mode: 'no-cors' /* раскомментить для пробы */,
+                    // mode: 'cors',
+                    // credentials: 'include',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        // 'access-control-allow-origin': '*',
+                    },
+                    body: JSON.stringify(login),
+                });
+                let result_login = await responce.json();
+                console.log(result_login);
+                token = result_login.token;
+                console.log(token);
+
+                let responce_info = await fetch(mainurl + endpointInfo, {
+                    method: 'POST',
+                    // mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+                console.log('Good info');
+                let result_info = await responce_info.json();
+                console.log(responce_info);
+            })();
+        </script>
+    </body>
+</html>
